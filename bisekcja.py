@@ -1,31 +1,38 @@
-import  math
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 
 def f(x):
-    return 0.5 * x ** 2 + 0.5 * x - 0.5
+    return 3 * x ** 2 - 3 * x - 1
 
 def g(x):
     return math.sin(4*x)
 
 def h(x):
-    return math.cos(3*x)+1
+    return 1
 
 def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc,func):
-    if (przedzialA>przedzialB):
-        przedzialA, przedzialB = przedzialB, przedzialA
-    for k in range(1, liczbaIteracji):
+    #warunek końca: dokładność
+    if(liczbaIteracji==-1):
         x = (przedzialA + przedzialB) / 2
-        if abs(func(x)) < dokladnosc:
-            break
-        else:
-            if func(x) * func(przedzialA) < 0:
-                przedzialB = x
-            else:
+        poprzedniaWartosc = 0
+        while(abs(x-poprzedniaWartosc) > dokladnosc):
+            if func(x) * func(przedzialA) > 0:
                 przedzialA = x
-    print("Mijesce zerowe: ",x)
-    pom=np.linspace(-10,10,100)
-    # pom2=
+            else:
+                przedzialB = x
+            poprzedniaWartosc=x
+            x = (przedzialA + przedzialB) / 2
+    #warunek końca: liczba iteracji
+    else:
+        for i in range(1, liczbaIteracji):
+            x = (przedzialA + przedzialB) / 2
+            if func(x) * func(przedzialA) > 0:
+                przedzialA = x
+            else:
+                przedzialB = x
+    print("Miejsce zerowe: ",x)
+    pom=np.linspace(-5,5,100)
     plt.plot(pom,  func(pom),'r')
     plt.plot(pom, 0*pom,'r')
     plt.show()
@@ -68,29 +75,44 @@ def wrap(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
         return
 
     bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
-    sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
+    sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)        
 
-def menuBisekcji():
+def menuPrzedzial():
     print("Podaj początkową wartość przedziału: ")
-    poczatekPrzedzialu= input()
+    poczatekPrzedzialu= int(input())
     print("Podaj końcową wartość przedziału: ")
-    koniecPrzedzialu= input()
+    koniecPrzedzialu= int(input())
+    return poczatekPrzedzialu, koniecPrzedzialu
+
+def menuDokladnosc():
+    print("Podaj dokładność: ")
+    dokladnosc= float(input())
+    return dokladnosc
+    
+def menuLiczbaIteracji():
     print("Podaj liczbe iteracji: ")
-    liczbaIteracji= input()
-    print("Podaj dokłądność: ")
-    dokladnosc= input()
-    wrap(int(poczatekPrzedzialu),int(koniecPrzedzialu),int(liczbaIteracji),float(dokladnosc),f)
+    liczbaIteracji= int(input())
+    return liczbaIteracji
 
 def menu():
     wybor=0
     while(wybor!=9):
-        print("1. Metoda bisekcji")
-        print("2. Metoda siecznych")
+        print("1. Dokładność")
+        print("2. Liczba iteracji")
         print("9. Koniec psot")
+        print("Podaj warunek stopu: ")
         wybor = int(input())
         if(wybor==1):
-            menuBisekcji()
+            a,b = menuPrzedzial()
+            epsilon = menuDokladnosc()
+            bisekcja(a,b,-1,epsilon)
+            wrap(a,b,-1,epsilon,funkcja)
         elif(wybor==2):
-            print("Work in progress!")
+            a,b = menuPrzedzial()
+            iteracje = menuLiczbaIteracji()
+            # bisekcja(a,b,iteracje, -1)
+            wrap(a,b, iteracje,-1,funkcja)
+
+
 
 menu()
