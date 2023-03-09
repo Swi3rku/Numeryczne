@@ -6,6 +6,7 @@ def f(x):
     return 3 * x ** 2 - 3 * x - 1
 
 def g(x):
+    print("funkcja ", math.sin(4*x))
     return math.sin(4*x)
 
 def h(x):
@@ -70,7 +71,7 @@ def wrap(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     if (przedzialA > przedzialB):
         przedzialA, przedzialB = przedzialB, przedzialA
     # sprawdzanie czy func(x[0]) i func(x[1]) są różne znaki
-    if ( func(przedzialA)*(func(przedzialB))>=0.0):
+    if (func(przedzialA)*(func(przedzialB))>=0):
         print("Wartość funkcji na krańcach przedziału nie są różnych znaków")
         return
 
@@ -96,22 +97,26 @@ def menuLiczbaIteracji():
 
 def menu():
     wybor=0
+    listaFunkcji=[f,g,h]
     while(wybor!=9):
         print("1. Dokładność")
         print("2. Liczba iteracji")
         print("9. Koniec psot")
         print("Podaj warunek stopu: ")
         wybor = int(input())
+        print("Wybierz funkcje:")
+        print("1. 3x^2-3x-1\n"
+              "2. sin(4x)\n"
+              "3. work in progress")
+        funkcja = int(input())
         if(wybor==1):
             a,b = menuPrzedzial()
             epsilon = menuDokladnosc()
-            bisekcja(a,b,-1,epsilon)
-            wrap(a,b,-1,epsilon,funkcja)
+            wrap(a,b,-1,epsilon,listaFunkcji[funkcja-1])
         elif(wybor==2):
             a,b = menuPrzedzial()
             iteracje = menuLiczbaIteracji()
-            # bisekcja(a,b,iteracje, -1)
-            wrap(a,b, iteracje,-1,funkcja)
+            wrap(a,b, iteracje,-1,listaFunkcji[funkcja-1])
 
 
 
