@@ -8,6 +8,7 @@ def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     # wzór do liczenia stycznych
     for i in range(0,liczbaIteracji-1):
         st=(( func(x[0])*x[1] )-( func(x[1])*x[0] ))/(func(x[0])-func(x[1]))
+        #st=x[0]-( (( func(x[0])*x[1] )-( func(x[1])*x[0] ))/(func(x[0])-func(x[1])) )
         #st=przedzialA
         if (abs(st-pr)<dokladnosc):
             print("miejsce zerowe: ",st)

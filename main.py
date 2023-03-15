@@ -30,7 +30,7 @@ def wrap(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
         print("Wartość funkcji na krańcach przedziału nie są różnych znaków")
         return
 
-    bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
+   # bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
     sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)        
 
 def menuPrzedzial():
