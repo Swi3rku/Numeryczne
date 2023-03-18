@@ -12,11 +12,11 @@ def f(x):
     return horner(x, [1,1,-1], 3)
 
 def g(x):
-    print("funkcja ", math.sin(4*x))
-    return math.sin(4*x)
+    # print("x= ",x, "sin(4x)", math.sin(4*x))
+    return np.sin(4*x)
 
 def h(x):
-    return 1
+    return 2**x-1
 
 # Funkcja sprawdzająca podstawowe warunki do użycia metod bisekcji i siecznych
 def wrap(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
@@ -30,14 +30,14 @@ def wrap(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
         print("Wartość funkcji na krańcach przedziału nie są różnych znaków")
         return
 
-   # bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
-    sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)        
+    bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
+    sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func)
 
 def menuPrzedzial():
     print("Podaj początkową wartość przedziału: ")
-    poczatekPrzedzialu= int(input())
+    poczatekPrzedzialu= float(input())
     print("Podaj końcową wartość przedziału: ")
-    koniecPrzedzialu= int(input())
+    koniecPrzedzialu= float(input())
     return poczatekPrzedzialu, koniecPrzedzialu
 
 def menuDokladnosc():
@@ -50,27 +50,36 @@ def menuLiczbaIteracji():
     liczbaIteracji= int(input())
     return liczbaIteracji
 
+def wyborFunkcji():
+    print("Wybierz funkcje:")
+    print("1. 3x^2-3x-1\n"
+          "2. sin(4x)\n"
+          "3. work in progress")
+    funkcja = int(input())
+    return funkcja
+
 def menu():
     wybor=0
     listaFunkcji=[f,g,h]
     while(wybor!=9):
+        print("=======================")
         print("1. Dokładność")
         print("2. Liczba iteracji")
         print("9. Koniec psot")
-        print("Podaj warunek stopu: ")
+        print("Podaj warunek stopu")
+        print("=======================")
         wybor = int(input())
-        print("Wybierz funkcje:")
-        print("1. 3x^2-3x-1\n"
-              "2. sin(4x)\n"
-              "3. work in progress")
-        funkcja = int(input())
         if(wybor==1):
+            funkcja = wyborFunkcji()
             a,b = menuPrzedzial()
             epsilon = menuDokladnosc()
             wrap(a,b,-1,epsilon,listaFunkcji[funkcja-1])
         elif(wybor==2):
+            funkcja = wyborFunkcji()
             a,b = menuPrzedzial()
             iteracje = menuLiczbaIteracji()
             wrap(a,b, iteracje,-1,listaFunkcji[funkcja-1])
 
-menu()
+# menu()
+sieczne(0,5,-1,0.0001,h)
+bisekcja(0,5,-1,0.0001,h)

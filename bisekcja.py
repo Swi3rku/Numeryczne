@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc,func):
+    poczatkowyPrzedzialA = przedzialA
+    poczatkowyPrzedzialB = przedzialB
     #warunek końca: dokładność
     if(liczbaIteracji==-1):
         x = (przedzialA + przedzialB) / 2
@@ -22,7 +24,7 @@ def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc,func):
             else:
                 przedzialB = x
     print("Miejsce zerowe: ",x)
-    pom=np.linspace(-5,5,100)
+    pom=np.linspace(poczatkowyPrzedzialA,poczatkowyPrzedzialB,100)
     plt.plot(pom,  func(pom),'r')
     plt.plot(pom, 0*pom,'r')
     plt.show()
