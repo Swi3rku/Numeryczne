@@ -13,7 +13,7 @@ def f(x):
 
 def g(x):
     # print("x= ",x, "sin(4x)", math.sin(4*x))
-    return np.sin(4*x)
+    return np.sin(x)
 
 def h(x):
     return 2**x-1
@@ -54,7 +54,7 @@ def wyborFunkcji():
     print("Wybierz funkcje:")
     print("1. 3x^2-3x-1\n"
           "2. sin(4x)\n"
-          "3. work in progress")
+          "3. 2^(x-1)")
     funkcja = int(input())
     return funkcja
 
@@ -80,6 +80,7 @@ def menu():
             iteracje = menuLiczbaIteracji()
             wrap(a,b, iteracje,-1,listaFunkcji[funkcja-1])
 
-# menu()
-sieczne(0,5,-1,0.0001,h)
-bisekcja(0,5,-1,0.0001,h)
+pom=np.linspace(0,2,100)
+plt.plot(pom,  g(pom),'r')
+plt.show()
+menu()

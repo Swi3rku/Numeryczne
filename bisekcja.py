@@ -23,7 +23,7 @@ def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc,func):
                 przedzialA = x
             else:
                 przedzialB = x
-    print("Miejsce zerowe: ",x)
+    print("Miejsce zerowe: ",round(x,4))
     pom=np.linspace(poczatkowyPrzedzialA,poczatkowyPrzedzialB,100)
     plt.plot(pom,  func(pom),'r')
     plt.plot(pom, 0*pom,'r')
