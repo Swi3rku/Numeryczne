@@ -6,6 +6,7 @@ def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     poczatkowyPrzedzialA = przedzialA
     poczatkowyPrzedzialB = przedzialB
     iteracje = 0
+    dok = dokladnosc
     # sprawdzanie czy func(x[0]) i func(x[1]) są różne znaki
     if (func(przedzialA) * (func(przedzialB)) >= 0):
         print("Wartość funkcji na krańcach przedziału nie są różnych znaków")
@@ -44,4 +45,5 @@ def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     pom = np.linspace(poczatkowyPrzedzialA, poczatkowyPrzedzialB, 100)
     plt.plot(pom, func(pom), 'r')
     plt.plot(pom, 0 * pom, 'r')
+    plt.scatter(x, 0)
     plt.show()

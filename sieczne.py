@@ -48,4 +48,5 @@ def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     pom = np.linspace(przedzialA, przedzialB, 100)
     plt.plot(pom, func(pom), 'r')
     plt.plot(pom, 0 * pom, 'r')
+    plt.scatter(st, 0)
     plt.show()
