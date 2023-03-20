@@ -1,8 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-#stare wzorki
-#st=(( func(x[0])*x[1] )-( func(x[1])*x[0] ))/(func(x[0])-func(x[1]))
-#st=x[0]-( (( func(x[0])*x[1] )-( func(x[1])*x[0] ))/(func(x[0])-func(x[1])) )
 
 def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     #przypisanie końców przedziału do x
@@ -11,7 +8,13 @@ def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     st=przedzialB
     dok=0
     iteracje=0
-    #warunek -> liczba iteracji
+    #===============================================#
+    # warunek -> liczba iteracji                    #
+    # st -> wyliczanie stycznych                    #
+    # pr -> poprzednia wartość st                   #
+    # dok -> dokładność wyliczenia miejsca zerowego #
+    # poPrzecinku -> ile liczb po przecinku wypisać #
+    #===============================================#
     if liczbaIteracji != -1:
         iteracje=liczbaIteracji
         poPrzecinku=4
@@ -37,7 +40,6 @@ def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
             x[0],x[1]=st,x[0]
             if(x[0]>x[1]):
                 x[0],x[1]=x[1],x[0]
-        print("iteracje : ",iteracje)
 
     print("===METODA==SIECZNYCH===")
     print("miejsce zerowe: ",round(st,poPrzecinku))
@@ -48,34 +50,3 @@ def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
     plt.plot(pom,  func(pom),'r')
     plt.plot(pom, 0*pom,'r')
     plt.show()
-
-# import matplotlib.pyplot as plt
-# import numpy as np
-
-# def sieczne(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
-#     print("Sieczne")
-#     #przypisanie końców przedziału do x
-#     x=[przedzialA,przedzialB]
-#     pr=przedzialA
-#     st=przedzialB
-    
-#     #warunek -> liczba iteracji
-#     if liczbaIteracji != -1:
-#         for i in range(0,liczbaIteracji-1):
-#             st=x[1]-((func(x[1])*(x[1]-x[0]))/(func(x[1])-func(x[0])))
-#             st=round(st,2)
-#             x[0],x[1]=st,x[0]
-            
-#     else:
-#             #Warunek -> dokładność
-#         while(True):
-#                st=x[1]-((func(x[1])*(x[1]-x[0]))/(func(x[1])-func(x[0])))
-#                if(abs(st-x[1])<dokladnosc):
-#                    break
-#                x[0],x[1]=x[1],st
-
-#     print("miejsce zerowe: ",st)
-#     pom=np.linspace(przedzialA,przedzialB,100)
-#     plt.plot(pom,  func(pom),'r')
-#     plt.plot(pom, 0*pom,'r')
-#     plt.show()
