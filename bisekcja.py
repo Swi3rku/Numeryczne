@@ -10,6 +10,7 @@ def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc,func):
         x = (przedzialA + przedzialB) / 2
         poprzedniaWartosc = 0
         while(abs(x-poprzedniaWartosc) > dokladnosc):
+            dok=abs(x-poprzedniaWartosc)
             iteracje += 1
             if func(x) * func(przedzialA) > 0:
                 przedzialA = x
