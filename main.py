@@ -9,14 +9,14 @@ def f(x):
     #ta funkcja chyba nie ma miejsc zerowych więc podmieniłem na:
     #x**2+x-1
     #return 3 * x ** 2 - 3 * x - 1
-    return horner(x, [1,1,-1], 3)
+    return horner(x, [5,-7,1,-1], 4)
 
 def g(x):
     # print("x= ",x, "sin(4x)", math.sin(4*x))
-    return np.sin(x)
+    return np.sin(4*x)
 
 def h(x):
-    return 2**x-1
+    return 2**(x+1)-3
 
 # Funkcja sprawdzająca podstawowe warunki do użycia metod bisekcji i siecznych
 def wrap(przedzialA, przedzialB, liczbaIteracji, dokladnosc, func):
@@ -52,9 +52,9 @@ def menuLiczbaIteracji():
 
 def wyborFunkcji():
     print("Wybierz funkcje:")
-    print("1. 3x^2-3x-1\n"
+    print("1. 5x^3-7x^2+x-1\n"
           "2. sin(4x)\n"
-          "3. 2^(x-1)")
+          "3. 2^(x+1)-3")
     funkcja = int(input())
     return funkcja
 
