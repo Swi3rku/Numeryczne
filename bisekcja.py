@@ -20,15 +20,20 @@ def bisekcja(przedzialA, przedzialB, liczbaIteracji, dokladnosc,func):
     #warunek końca: liczba iteracji
     else:
         iteracje = liczbaIteracji
+        pr=0
         for i in range(1, liczbaIteracji):
             x = (przedzialA + przedzialB) / 2
+            dok=abs(x-pr)
             if func(x) * func(przedzialA) > 0:
                 przedzialA = x
+                pr=x
             else:
                 przedzialB = x
+                pr=x
     print("===METODA===BISEKCJI===")
     print("miejsce zerowe: ",x)
     print("Liczba Iteracji: ", iteracje)
+    print("Dokładność: ", dok)
     print("=======================")
     pom=np.linspace(poczatkowyPrzedzialA,poczatkowyPrzedzialB,100)
     plt.plot(pom,  func(pom),'r')
