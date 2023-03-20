@@ -79,8 +79,4 @@ def menu():
             a,b = menuPrzedzial()
             iteracje = menuLiczbaIteracji()
             wrap(a,b, iteracje,-1,listaFunkcji[funkcja-1])
-
-pom=np.linspace(0,2,100)
-plt.plot(pom,  g(pom),'r')
-plt.show()
 menu()
