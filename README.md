@@ -1,2 +1,3 @@
 # numerki
-Robimy NUMERKI :D
+Robimy NUMERKI :D  
+![Alt text](numerki.jpg)
