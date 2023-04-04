@@ -1,3 +1,4 @@
+#Jakub(Szymczak + Świerczyński)
 import numpy as np
 
 
@@ -22,16 +23,16 @@ def zaokr(lista):
 
 def eliminacjaGaussa(lista, liczbaNiewiadomych):
     for i in range(liczbaNiewiadomych):
-        # Find row with largest pivot element and swap with current row
+        # Element glowny
         max_row = i + np.argmax(abs(lista[i:, i]))
         lista[[i, max_row]] = lista[[max_row, i]]
-        # Eliminate lower triangular part of the matrix
+        # postac trojkatna
         for j in range(i + 1, n):
             c = lista[j, i] / lista[i, i]
             lista[j, i:] = lista[j, i:] - c * lista[i, i:]
     zaokr(lista)
     print(lista)
-    if(lista[len(lista)-1][len(lista)-1]==lista[len(lista)-1][len(lista)]):
+    if(lista[len(lista)-1][len(lista)-1]==0 and lista[len(lista)-1][len(lista)]==0):
         print("Układ nieoznaczony")
         return -1
     if(lista[len(lista)-1][len(lista)-1]==0 and lista[len(lista)-1][len(lista)]!=0):
