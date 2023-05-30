@@ -6,45 +6,47 @@ import numpy as np
 import math
 
 
-def f(x):
+def funPol(x):
     # return horner(x,[1,0,1,0,60],5)
     return x**2+x**4+60
 
 
-def g(x):
-    # return (x * np.sin(x) ** 2)
-    return (2*x**3 * np.sin(3*x) ** 2 + 1)
-
-
-def funMod(x):
-    return abs(abs(x-4)-5)
-    # return np.cos(np.sin(3*x))
+def notFunPol(x):
+    return -x**2
 
 
 def notFunLine(x):
     return 3*x-5
 
 
-def testFun(x):
-    return abs(x)
+def funCos(x):
+    # return abs(x)
     # return 2*x**2+x-2
     # return np.sin(x) #chyba jako tako dziala
-    # return np.cos(2*x**2+1)
+    return np.cos(2*x**2+1)
 
-def menu():
-    print("1. x^4+x^2+60"
-          "2. 2x^3*sin^2(3x)+1"
-          "3. ||x-4|-5|"
-          "4. 3x-5")
-    print("wybor: ")
-    wybor = int(input())
+
+def notFunsin(x):
+    return np.sin(x)
+
+
+def funMod(x):
+    return abs(abs(x-4)-5)
+
+
+def notFunMod(x):
+    return abs(x)
+
+
+def superUltraTurboFun(x):
+    return funCos(funMod(x))
 
 
 def wielomiany(n, x):
     if n == 0:
         return 1 + 0*x
     elif n == 1:
-        return 2*x;
+        return 2*x
     else:
         return 2*x*wielomiany(n-1, x) - 2*(n-1)*wielomiany(n-2, x)
 
@@ -59,14 +61,46 @@ def aproks(funkcja, stopienWielomianu, iloscWezlow, przedzialA, przedzialB):
     return wynik
 
 
+def blad(pierwotne_wartosci, aproksymowane_wartosci):
+    n = len(pierwotne_wartosci)
+    suma_kwadratow = sum((pierwotne_wartosci[i] - aproksymowane_wartosci[i]) ** 2 for i in range(n))
+    blad_aproksymacji = (suma_kwadratow)/n
+
+    return blad_aproksymacji
+
+
 a = -2
 b = 2
 przedzial = np.linspace(a,b)
-# print(aproks(testFun,2,5,-2,2))
-# print(wielomiany(3,przedzial))
-plt.plot(przedzial, aproks(testFun,5,5,a,b))
-plt.plot(przedzial, testFun(przedzial), linestyle='dashed', color='red')
+listaF = [funPol, notFunPol, funCos, notFunsin, funMod, notFunMod, notFunLine,superUltraTurboFun]
+f = open(".\\blad.txt","a")
+for i in listaF:
+    plt.figure(figsize=(4,3),dpi=300)
+    plt.plot(przedzial, aproks(i,2,5,a,b))
+    plt.plot(przedzial, i(przedzial), linestyle='dashed', color='red')
+    plt.title(f"{i.__name__}, stopień: 2")
+    print(blad(i(przedzial), aproks(i,2,5,a,b)))
+    plt.savefig(f"wykres{i.__name__}2.png")
+    plt.show()
+    f.write(f"{i.__name__}, 2, \t{blad(i(przedzial), aproks(i,2,5,a,b))}\n")
+    #*************
+    plt.figure(figsize=(4,3),dpi=300)
+    plt.plot(przedzial, aproks(i,5,5,a,b))
+    plt.plot(przedzial, i(przedzial), linestyle='dashed', color='red')
+    plt.title(f"{i.__name__}, stopień: 5")
+    print(blad(i(przedzial), aproks(i,5,5,a,b)))
+    plt.savefig(f"wykres{i.__name__}5.png")
+    plt.show()
+    f.write(f"{i.__name__}, 5, \t{blad(i(przedzial), aproks(i,5,5,a,b))}\n")
+
+f.close()
 
 # x = sym.Symbol('x')
 # for i in range(5):
 #     print(wielomiany(i,x))
+
+#TODO:
+# - błąd aproksymacji
+# - opcjonalnie bardziej zaawansowana wersja na 5
+# - wartości współczynników wielomianów aproksymacyjnych należy wyliczać w sposób iteracyjny i zapamiętywać w tablicy \
+# tak, aby możliwe było wykorzystanie tych współczynników w schemacie Hornera (rekurencja be)
