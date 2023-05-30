@@ -2,11 +2,11 @@ from Zad5.main import wielomiany
 # from horner import horner
 
 
-#==============================#
-#                              #
-#  Code By string(74*83)(1+')  #
-#                              #
-#==============================#
+#=====================================#
+#                                     #
+#  Code By string(74)string(83)(1+')  #
+#                                     #
+#=====================================#
 
 
 def gaussHermite(f, n, stopienWielomianu):
@@ -26,8 +26,8 @@ def gaussHermite(f, n, stopienWielomianu):
     return wynik
 
 
-#==============================#
-#                              #
-#  Code By string(74*83)(1+')  #
-#                              #
-#==============================#
+#=====================================#
+#                                     #
+#  Code By string(74)string(83)(1+')  #
+#                                     #
+#=====================================#

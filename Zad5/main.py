@@ -6,6 +6,13 @@ import numpy as np
 import math
 
 
+#=====================================#
+#                                     #
+#  Code By string(74)string(83)(1+')  #
+#                                     #
+#=====================================#
+
+
 def funPol(x):
     # return horner(x,[1,0,1,0,60],5)
     return x**2+x**4+60
@@ -20,9 +27,6 @@ def notFunLine(x):
 
 
 def funCos(x):
-    # return abs(x)
-    # return 2*x**2+x-2
-    # return np.sin(x) #chyba jako tako dziala
     return np.cos(2*x**2+1)
 
 
@@ -42,13 +46,23 @@ def superUltraTurboFun(x):
     return funCos(funMod(x))
 
 
+#=====================================#
+#                                     #
+#  Code By string(74)string(83)(1+')  #
+#                                     #
+#=====================================#
+
+
 def wielomiany(n, x):
     if n == 0:
         return 1 + 0*x
     elif n == 1:
         return 2*x
     else:
-        return 2*x*wielomiany(n-1, x) - 2*(n-1)*wielomiany(n-2, x)
+        wyniki = [1 + 0*x, 2*x]
+        for i in range(2, n + 1):
+            wyniki.append(2*x*wyniki[i-1] - 2*(i-1)*wyniki[i-2])
+        return wyniki[n]
 
 
 def aproks(funkcja, stopienWielomianu, iloscWezlow, przedzialA, przedzialB):
@@ -65,8 +79,14 @@ def blad(pierwotne_wartosci, aproksymowane_wartosci):
     n = len(pierwotne_wartosci)
     suma_kwadratow = sum((pierwotne_wartosci[i] - aproksymowane_wartosci[i]) ** 2 for i in range(n))
     blad_aproksymacji = (suma_kwadratow)/n
-
     return blad_aproksymacji
+
+
+#=====================================#
+#                                     #
+#  Code By string(74)string(83)(1+')  #
+#                                     #
+#=====================================#
 
 
 a = -2
@@ -95,12 +115,9 @@ for i in listaF:
 
 f.close()
 
-# x = sym.Symbol('x')
-# for i in range(5):
-#     print(wielomiany(i,x))
 
-#TODO:
-# - błąd aproksymacji
-# - opcjonalnie bardziej zaawansowana wersja na 5
-# - wartości współczynników wielomianów aproksymacyjnych należy wyliczać w sposób iteracyjny i zapamiętywać w tablicy \
-# tak, aby możliwe było wykorzystanie tych współczynników w schemacie Hornera (rekurencja be)
+#=====================================#
+#                                     #
+#  Code By string(74)string(83)(1+')  #
+#                                     #
+#=====================================#
